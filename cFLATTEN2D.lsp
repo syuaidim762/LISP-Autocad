@@ -1,0 +1,6 @@
+(defun c:FLATTEN2D ()
+  (command "_.move" "_all" "" "0,0,0" "0,0,1e99")
+  (command "_.move" "_all" "" "0,0,0" "0,0,-1e99")
+  (princ "\nAll objects forced to Z=0. Navigation should be smoother.")
+  (princ)
+)

@@ -1,0 +1,5 @@
+(defun c:NOZOMBIE ()
+  (dictremove (namedobjdict) "Acad_DGNLineTypeComp")
+  (princ "\nDGN Bloat removed.")
+  (princ)
+)

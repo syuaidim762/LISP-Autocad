@@ -1,0 +1,36 @@
+;; Perintah untuk jadi HURUF BESAR (Ketik: UP)
+(defun c:UP (/ ss i en el str)
+  (if (setq ss (ssget "_:L" '((0 . "TEXT,MTEXT"))))
+    (progn
+      (repeat (setq i (sslength ss))
+        (setq en (ssname ss (setq i (1- i))))
+        (setq el (entget en))
+        (setq str (cdr (assoc 1 el)))
+        (if str
+          (entmod (subst (cons 1 (strcase str)) (assoc 1 el) el))
+        )
+      )
+      (princ (strcat "\n" (itoa (sslength ss)) " teks diubah ke UPPERCASE."))
+    )
+  )
+  (princ)
+)
+
+;; Perintah untuk jadi huruf kecil (Ketik: LOW)
+(defun c:LOW (/ ss i en el str)
+  (if (setq ss (ssget "_:L" '((0 . "TEXT,MTEXT"))))
+    (progn
+      (repeat (setq i (sslength ss))
+        (setq en (ssname ss (setq i (1- i))))
+        (setq el (entget en))
+        (setq str (cdr (assoc 1 el)))
+        (if str
+          ;; Perhatikan tambahan T di bawah ini untuk lowercase
+          (entmod (subst (cons 1 (strcase str T)) (assoc 1 el) el))
+        )
+      )
+      (princ (strcat "\n" (itoa (sslength ss)) " teks diubah ke lowercase."))
+    )
+  )
+  (princ)
+)
